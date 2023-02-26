@@ -1,0 +1,9 @@
+[wordpress]
+127.0.0.1
+
+[wordpress:vars]
+ansible_user=
+ansible_password=
+private_key_file=
+
+ansible_python_interpreter=/usr/bin/python3.7

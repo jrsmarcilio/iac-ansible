@@ -1,0 +1,30 @@
+---
+- hosts: all
+  tasks:
+    - name: Install PHP Packages
+      yum:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - php
+        - php-bcmath
+        - php-devel
+        - php-gd
+        - php-intl
+        - php-mbstring
+        - php-mysql
+        - php-mysqlnd
+        - php-pecl-memcache
+        - php-soap
+        - php-xml
+        - php-xmlrpc
+      become: yes
+    
+    - name: Get PHP Version
+      shell: php -v
+      register: php_version
+      become: yes
+
+    - name: Show PHP Version
+      debug:
+        msg: "{{ php_version.stdout_lines[0] }}"
