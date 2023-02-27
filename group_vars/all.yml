@@ -1,0 +1,11 @@
+mysql_root_password: banco
+mysql_host: "{{ groups['database'][0] }}"
+mysql_bind_address: 0.0.0.0
+
+wp_db_user: wordpress_user
+wp_db_name: wordpress_db
+wp_db_password: wordpress
+wp_host: "{{ groups['wordpress'][0] }}"
+wp_installation_path: /var/www/wordpress
+
+httpd_installation_path: /etc/httpd/conf

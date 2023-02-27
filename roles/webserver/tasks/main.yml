@@ -1,0 +1,28 @@
+---
+- name: Install HTTPD Package (Apache) and PHP Packages
+  yum:
+    name: "{{ item }}"
+    state: latest
+  become: true
+  with_items:
+    - httpd
+    - mod_ssl
+    - php
+    - php-gd
+    - php-mysql
+    - php-mysqlnd
+
+- name: Start Apache Service
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+  become: true
+
+- name: Copy Apache Configuration File
+  template:
+    src: "templates/httpd.conf.j2"
+    dest: "{{ httpd_installation_path }}/httpd.conf"
+  become: true
+  notify:
+    - restart apache
